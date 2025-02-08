@@ -17,6 +17,8 @@ pipeline {
       steps {
         // echo "Good Morning, $FIRST_NAME"
         sh '''
+          pwd
+          ls -altr
           git rev-parse --abbrev-ref HEAD
           # hostname
           # cat /etc/os-release
