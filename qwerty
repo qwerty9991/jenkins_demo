@@ -4,7 +4,7 @@ pipeline {
     stage('input') {
       agent any
       when {
-        beforeInput true
+        // beforeInput true
         branch 'master'
       }
       input {
