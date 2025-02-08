@@ -15,6 +15,7 @@ pipeline {
     //     }
     //   }
       steps {
+        git branch: '*/master', url: 'https://github.com/qwerty9991/jenkins_demo.git'
         // echo "Good Morning, $FIRST_NAME"
         sh '''
           pwd
