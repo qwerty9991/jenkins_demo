@@ -18,12 +18,8 @@ pipeline {
         script {
            // echo "Good Morning, $FIRST_NAME"
            sh '''
-             pwd
-             ls -altr
-             cat .git/HEAD
-             git rev-parse --abbrev-ref HEAD
-             # hostname
-             # cat /etc/os-release
+             hostname
+             cat /etc/os-release
            '''
               }
     }
