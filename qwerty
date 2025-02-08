@@ -3,10 +3,10 @@ pipeline {
   stages {
     stage('input') {
       agent any
-    //   when {
-    //     beforeInput true
-    //     branch 'master'
-    //   }
+      when {
+        beforeInput true
+        branch 'master'
+      }
       input {
         message "What is your first name?"
         ok "Submit"
