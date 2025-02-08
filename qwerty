@@ -13,7 +13,7 @@ pipeline {
     //     parameters {
     //       string(defaultValue: 'Dave', name: 'FIRST_NAME', trim: true) 
     //     }
-      }
+    //   }
       steps {
         // echo "Good Morning, $FIRST_NAME"
         sh '''
