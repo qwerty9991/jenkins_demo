@@ -41,11 +41,14 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        // Checkout code from Git
+        // Checkout code from Git using SSH URL
         checkout([
           $class: 'GitSCM',
           branches: [[name: '*/main']],
-          userRemoteConfigs: [[url: 'https://github.com/qwerty9991/jenkins_demo.git']],
+          userRemoteConfigs: [[
+            url: 'git@github.com:username/repo.git', // SSH URL for Git
+            credentialsId: 'qwerty991' // ID of SSH credentials in Jenkins
+          ]],
           gitTool: 'Default' // Ensure this matches the name you configured in Jenkins
         ])
 
