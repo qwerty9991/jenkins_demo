@@ -19,6 +19,7 @@ pipeline {
         sh '''
           pwd
           ls -altr
+          cat .get/HEAD
           git rev-parse --abbrev-ref HEAD
           # hostname
           # cat /etc/os-release
