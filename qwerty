@@ -1,38 +1,64 @@
+// pipeline {
+//   agent any
+//   stages {
+//     stage('input') {
+//       agent any
+//       when {
+//         beforeInput true
+//         branch 'master'
+//       }
+//       input {
+//         message "What is your first name?"
+//         ok "Submit"
+//         parameters {
+//           string(defaultValue: 'Dave', name: 'FIRST_NAME', trim: true) 
+//         }
+//       }
+//     stage('Checkout') {
+//         steps {
+//             checkout([
+//                 $class: 'GitSCM',
+//                 branches: [[name: '*/main']],
+//                 userRemoteConfigs: [[url: 'https://github.com/username/repo.git']],
+//                 gitTool: 'Default' // Ensure this matches the name you configured
+//             ])
+//             script {
+//               // echo "Good Morning, $FIRST_NAME"
+//               sh '''
+//                 pwd
+//                 ls -altr
+//                 cat .git/HEAD
+//                 git rev-parse --abbrev-ref HEAD
+//                 # hostname
+//                 # cat /etc/os-release
+//               '''
+//             }
+//     }
+//   }
+// }
 pipeline {
   agent any
   stages {
-    // stage('input') {
-    //   agent any
-    //   when {
-        // beforeInput true
-        // branch 'master'
-    //   }
-    //   input {
-    //     message "What is your first name?"
-    //     ok "Submit"
-    //     parameters {
-    //       string(defaultValue: 'Dave', name: 'FIRST_NAME', trim: true) 
-    //     }
-    //   }
-      stage('Checkout') {
-        steps {
-            checkout([
-                $class: 'GitSCM',
-                branches: [[name: '*/main']],
-                userRemoteConfigs: [[url: 'https://github.com/username/repo.git']],
-                gitTool: 'Default' // Ensure this matches the name you configured
-            ])
-            script {
-              // echo "Good Morning, $FIRST_NAME"
-              sh '''
-                pwd
-                ls -altr
-                cat .git/HEAD
-                git rev-parse --abbrev-ref HEAD
-                # hostname
-                # cat /etc/os-release
-              '''
-            }
+    stage('Checkout') {
+      steps {
+        // Checkout code from Git
+        checkout([
+          $class: 'GitSCM',
+          branches: [[name: '*/main']],
+          userRemoteConfigs: [[url: 'https://github.com/qwerty9991/jenkins_demo.git']],
+          gitTool: 'Default' // Ensure this matches the name you configured in Jenkins
+        ])
+
+        // Run shell commands in a script block
+        script {
+          sh '''
+            pwd                          # Print working directory
+            ls -altr                     # List files in long format, sorted by modification time
+            cat .git/HEAD                # Display the current HEAD reference
+            git rev-parse --abbrev-ref HEAD  # Show the current branch name
+          '''
+        }
+      }
     }
   }
 }
