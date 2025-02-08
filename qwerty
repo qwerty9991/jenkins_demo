@@ -44,7 +44,7 @@ pipeline {
         // Checkout code from Git using SSH URL
         checkout([
           $class: 'GitSCM',
-          branches: [[name: '*/main']],
+          branches: [[name: '*/master']],
           userRemoteConfigs: [[
             url: 'git@github.com:username/repo.git', // SSH URL for Git
             credentialsId: 'qwerty991' // ID of SSH credentials in Jenkins
