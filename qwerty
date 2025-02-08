@@ -5,7 +5,7 @@ pipeline {
       agent any
       when {
         beforeInput true
-        branch 'prod'
+        branch 'master'
       }
       input {
         message "What is your first name?"
