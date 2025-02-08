@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('input') {
+    // stage('input') {
     //   agent any
     //   when {
         // beforeInput true
@@ -14,6 +14,15 @@ pipeline {
     //       string(defaultValue: 'Dave', name: 'FIRST_NAME', trim: true) 
     //     }
     //   }
+    stage('Checkout') {
+            steps {
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[url: 'https://github.com/username/repo.git']],
+                    gitTool: 'Default' // Ensure this matches the name you configured
+                ])
+            }
       steps {
         // echo "Good Morning, $FIRST_NAME"
         sh '''
